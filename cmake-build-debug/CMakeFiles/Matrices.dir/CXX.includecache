@@ -1,0 +1,42 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+/Users/oliver/OneDrive/Software Development/C++/Matrices/main.cpp
+iostream
+-
+matrix.h
+/Users/oliver/OneDrive/Software Development/C++/Matrices/matrix.h
+
+/Users/oliver/OneDrive/Software Development/C++/Matrices/matrix.cpp
+matrix.h
+/Users/oliver/OneDrive/Software Development/C++/Matrices/matrix.h
+
+/Users/oliver/OneDrive/Software Development/C++/Matrices/matrix.h
+iostream
+-
+vector
+-
+fstream
+-
+sstream
+-
+iomanip
+-
+row.h
+/Users/oliver/OneDrive/Software Development/C++/Matrices/row.h
+
+/Users/oliver/OneDrive/Software Development/C++/Matrices/row.cpp
+row.h
+/Users/oliver/OneDrive/Software Development/C++/Matrices/row.h
+
+/Users/oliver/OneDrive/Software Development/C++/Matrices/row.h
+iostream
+-
+vector
+-
+
