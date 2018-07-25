@@ -156,7 +156,7 @@ class matrix {
 	}
 	
 	// Method to format the contents of the matrix into a printable string
-	string get_output () {
+	string to_string () {
 		
 		string output;
 		
@@ -182,9 +182,10 @@ class matrix {
 	
 	// MARK: Operators
 	
-	// Addition
+	// Matrix addition
 	matrix operator + (matrix& b) {
 		
+		// Create a blank matrix to hold the result of the operation
 		matrix result = create_blank(this->row_count(), this->column_count());
 	
 		// Check that the matrices are conformable for addition
@@ -210,14 +211,15 @@ class matrix {
 		return result;
 	}
 	
-	// Subtraction
+	// Matrix subtraction
 	matrix operator - (matrix& b) {
 		
+		// Create a blank matrix to hold the result of the operation
 		matrix result = create_blank(this->row_count(), this->column_count());
 		
 		// Check that the matrices are conformable for addition
 		if (this->column_count() == b.column_count() & this->row_count() == b.row_count()) {
-			// They are conformable, perform addition
+			// They are conformable, perform subtraction
 			
 			// Loop through each row then element
 			for (long i = 0; i < this->row_count(); i++) {
@@ -238,7 +240,43 @@ class matrix {
 		return result;
 	}
 	
+	// Matrix multiplication
+	matrix operator * (matrix& b) {
+		
+		// Create a blank matrix to hold the result of the operation
+		matrix result = create_blank(this->row_count(), this->column_count());
+		
+		// Check that the matrices are conformable for multiplication
+		if (this->column_count() == b.row_count()) {
+			// They are conformable, perform multiplication
+			
+			// Loop through each row and column of result matrix and fill in value
+			for (long i = 0; i < this->row_count(); i++) {
+				
+				for (long j = 0; j < this->column_count(); j++) {
+					
+					double element = 0;
+					
+					for (int k = 0; k < this->column_count(); k++) {
+						
+						element += this->rows.at(i).get_element(k) * b.rows.at(k).get_element(j);
+					}
+					
+					result.rows.at(i).set_element(j, element);
+				}
+			}
+		} else {
+			// They are not conformable, throw error
+			throw invalid_argument("Error: Matrix is not conformable for multiplication");
+		}
+		
+		return result;
+		
+	}
 	
 };
+
+
+
 
 #endif //MATRICES_MATRIX_H
