@@ -180,6 +180,21 @@ class matrix {
 		return output;
 	}
 	
+	// Method that returns a scalar multiple of a matrix
+	matrix scalar (double m) {
+		
+		for (long i = 0; i < this->row_count(); i++) {
+			
+			for (long j = 0; j < this->column_count(); j++) {
+				
+				double newValue = this->get_element(i, j) * m;
+				this->set_element(i, j, newValue);
+			}
+		}
+		
+		return *this;
+	}
+	
 	// MARK: Operators
 	
 	// Matrix addition
@@ -198,8 +213,8 @@ class matrix {
 				for (long j = 0; j < this->column_count(); j++) {
 					
 					// Create and set new value for element
-					double newValue = this->rows.at(i).get_element(j) + b.rows.at(i).get_element(j);
-					result.rows.at(i).set_element(j, newValue);
+					double newValue = this->get_element(i, j) + b.get_element(i, j);
+					result.set_element(i, j, newValue);
 				}
 			}
 			
@@ -227,8 +242,8 @@ class matrix {
 				for (long j = 0; j < this->column_count(); j++) {
 					
 					// Create and set new value for element
-					double newValue = this->rows.at(i).get_element(j) - b.rows.at(i).get_element(j);
-					result.rows.at(i).set_element(j, newValue);
+					double newValue = this->get_element(i, j) - b.get_element(i, j);
+					result.set_element(i, j, newValue);
 				}
 			}
 			
@@ -259,10 +274,10 @@ class matrix {
 					
 					for (int k = 0; k < this->column_count(); k++) {
 						
-						element += this->rows.at(i).get_element(k) * b.rows.at(k).get_element(j);
+						element += this->get_element(i, k) * b.get_element(k, j);
 					}
 					
-					result.rows.at(i).set_element(j, element);
+					result.set_element(i, j, element);
 				}
 			}
 		} else {
@@ -272,6 +287,31 @@ class matrix {
 		
 		return result;
 		
+	}
+	
+	// Matrix equality
+	bool operator == (matrix& b) {
+		
+		// Check that the matrices have same dimensions
+		if (this->row_count() == b.row_count() & this->column_count() == b.column_count()) {
+			// They have same dimensions so could be equal
+			// Check each element to test this
+			for (long i = 0; i < this->row_count(); i++) {
+				
+				for (long j = 0; j < this->column_count(); j++) {
+					
+					if (this->get_element(i, j) != b.get_element(i, j)) {
+						
+						return false;
+					}
+				}
+			}
+		} else {
+			// They don't have same dimensions so are definitely not equal
+			return false;
+		}
+		
+		return true;
 	}
 	
 };

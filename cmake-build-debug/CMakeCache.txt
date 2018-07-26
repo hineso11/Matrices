@@ -195,6 +195,12 @@ Matrices_SOURCE_DIR:STATIC=/Users/oliver/OneDrive/Software Development/C++/Matri
 //Path to a program.
 ProcessorCount_cmd_sysctl:FILEPATH=/usr/sbin/sysctl
 
+//Dependencies for target
+matrices_LIB_DEPENDS:STATIC=
+
+//Dependencies for target
+matriceslib_LIB_DEPENDS:STATIC=
+
 
 ########################
 # INTERNAL cache entries
