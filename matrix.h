@@ -155,6 +155,17 @@ class matrix {
 		return num_columns;
 	}
 	
+	double get_element (long row, long column) {
+		
+		double element = rows.at(row).get_element(column);
+		return element;
+	}
+	
+	void set_element (long row, long column, double value) {
+		
+		rows.at(row).set_element(column, value);
+	}
+	
 	// Method to format the contents of the matrix into a printable string
 	string to_string () {
 		
